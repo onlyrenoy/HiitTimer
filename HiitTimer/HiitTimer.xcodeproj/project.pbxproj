@@ -12,6 +12,7 @@
 		231E97AC2C79EFB700888961 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231E97AA2C79EFB700888961 /* LaunchScreen.storyboard */; };
 		231E97B42C79F25400888961 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231E97B32C79F25400888961 /* ViewController.swift */; };
 		231E97B72C79F9C200888961 /* Stevia in Frameworks */ = {isa = PBXBuildFile; productRef = 231E97B62C79F9C200888961 /* Stevia */; };
+		231E97B92C7A1E3C00888961 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231E97B82C7A1E3C00888961 /* Home.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		231E97AB2C79EFB700888961 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		231E97AD2C79EFB700888961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		231E97B32C79F25400888961 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		231E97B82C7A1E3C00888961 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,11 +58,20 @@
 			children = (
 				231E979F2C79EFB600888961 /* AppDelegate.swift */,
 				231E97B32C79F25400888961 /* ViewController.swift */,
+				231E97BA2C7A1E4100888961 /* Home */,
 				231E97A82C79EFB700888961 /* Assets.xcassets */,
 				231E97AA2C79EFB700888961 /* LaunchScreen.storyboard */,
 				231E97AD2C79EFB700888961 /* Info.plist */,
 			);
 			path = HiitTimer;
+			sourceTree = "<group>";
+		};
+		231E97BA2C7A1E4100888961 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				231E97B82C7A1E3C00888961 /* Home.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				231E97B42C79F25400888961 /* ViewController.swift in Sources */,
+				231E97B92C7A1E3C00888961 /* Home.swift in Sources */,
 				231E97A02C79EFB600888961 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

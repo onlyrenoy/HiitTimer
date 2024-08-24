@@ -7,15 +7,27 @@
 
 import UIKit
 
+class Times {
+    var exercise: TimeInterval
+    var rest: TimeInterval
+    
+    init(exercise: TimeInterval, rest: TimeInterval) {
+        self.exercise = exercise
+        self.rest = rest
+    }
+}
+
 class ViewController: UIViewController {
 
+    var round = UILabel()
+    
     var mainTimerLayer: CAShapeLayer!
     var pauseTimerLayer: CAShapeLayer!
     var timerLabel: UILabel!
     var startButton: UIButton!
     
-    var mainTimerDuration: TimeInterval = 5 // In seconds, set to 1 minute
-    var pauseTimerDuration: TimeInterval = 5 // In seconds, set to 30 seconds
+//    var mainTimerDuration: TimeInterval = 5 // In seconds, set to 1 minute
+//    var pauseTimerDuration: TimeInterval = 5 // In seconds, set to 30 seconds
     
     var mainTimer: Timer = Timer()
     var mainCounting = false
@@ -25,9 +37,31 @@ class ViewController: UIViewController {
 
     var remainingTime: TimeInterval = 0
     
+    
+    var repeatedTimes = 3
+    
+    var count = 1 {
+        didSet {
+            if count <= repeatedTimes {
+                startButtonTapped()
+            }
+        }
+    }
+    
+    var startRound = false
+    var times = Times(exercise: 3, rest: 3)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        round.text = "\(count)/\(repeatedTimes)"
+        round.textAlignment = .center
+        view.subviews(round)
+        view.layout(
+            120,
+            |-round-|
+        )
+        
         
         setupMainTimerLayer()
         setupPauseTimerLayer()
@@ -35,6 +69,8 @@ class ViewController: UIViewController {
         setupTimerLabel()
         setupStartButton()
     }
+    
+    
     
     func setupMainTimerLayer() {
         let circularPath = UIBezierPath(arcCenter: view.center, radius: 100, startAngle: -CGFloat.pi / 2, endAngle: 3 * CGFloat.pi / 2, clockwise: true)
@@ -87,8 +123,7 @@ class ViewController: UIViewController {
     }
 //    
     @objc func startButtonTapped() {
-        remainingTime = mainTimerDuration
-        
+        remainingTime = times.exercise
         if mainCounting {
             mainCounting = false
             mainTimer.invalidate()
@@ -100,64 +135,55 @@ class ViewController: UIViewController {
         } else {
             mainCounting = true
             startButton.setTitle("stop", for: .normal)
-            mainTimer = Timer.scheduledTimer(timeInterval: mainTimerDuration / 100, target: self, selector: #selector(updateMainTimer), userInfo: nil, repeats: true)
+            mainTimer = Timer.scheduledTimer(timeInterval: times.exercise / 100, target: self, selector: #selector(updateMainTimer), userInfo: nil, repeats: true)
         }
-//        startMainTimer()
     }
     
     
 //
     func startMainTimer() {
-        remainingTime = mainTimerDuration
+        remainingTime = times.exercise
         mainTimerLayer.strokeEnd = 0
-//        startTimer(duration: mainTimerDuration, selector: #selector(updateMainTimer))
     }
-//    
-//    func startPauseTimer() {
-//        remainingTime = pauseTimerDuration
-//        pauseTimerLayer.strokeEnd = 0
-//        startTimer(duration: pauseTimerDuration, selector: #selector(updatePauseTimer))
-//    }
-//    
-//    func startTimer(duration: TimeInterval, selector: Selector) {
-//        mainTimer.invalidate()
-////        pauseTimer?.invalidate()
-//        
-//        Timer.scheduledTimer(timeInterval: duration / 100, target: self, selector: selector, userInfo: nil, repeats: true)
-//    }
-//    
-    @objc func updateMainTimer() {
+    
+    @objc 
+    func updateMainTimer() {
         if remainingTime > 0 {
-            remainingTime -= mainTimerDuration / 100
-            let progress = (mainTimerDuration - remainingTime) / mainTimerDuration
+            remainingTime -= times.exercise / 100
+            let progress = (times.exercise - remainingTime) / times.exercise
             mainTimerLayer.strokeEnd = CGFloat(progress)
             timerLabel.text = "\(Int(remainingTime))"
         } else {
             mainTimer.invalidate()
             if mainTimerLayer.strokeEnd >= 1  {
-                remainingTime = pauseTimerDuration
-              pauseTimer = Timer.scheduledTimer(timeInterval: pauseTimerDuration / 100, target: self, selector: #selector(updatePauseTimer), userInfo: nil, repeats: true)
+                remainingTime = times.rest
+              pauseTimer = Timer.scheduledTimer(timeInterval: times.rest / 100, target: self, selector: #selector(updatePauseTimer), userInfo: nil, repeats: true)
             }
-//            startPauseTimer()
         }
     }
-//    
-    @objc func updatePauseTimer() {
+    
+    @objc 
+    func updatePauseTimer() {
         if remainingTime > 0 {
-            remainingTime -= pauseTimerDuration / 100
-            let progress = (pauseTimerDuration - remainingTime) / pauseTimerDuration
+            remainingTime -= times.rest / 100
+            let progress = (times.rest - remainingTime) / times.rest
             pauseTimerLayer.strokeEnd = CGFloat(progress)
             timerLabel.text = "\(Int(remainingTime))"
         } else {
             pauseTimer.invalidate()
+            startRound = false
+            timerLabel.text = "end"
+            
+            if count < repeatedTimes {
+                mainTimerLayer.strokeEnd = 0
+                pauseTimerLayer.strokeEnd = 0
+                mainCounting = false
+                count += 1
+                round.text = "\(count)/\(repeatedTimes)"
+            } else {
+                timerLabel.text = "end"
+            }
+            
         }
     }
-//    
-//    func resetTimers() {
-//        // Reset the UI and timers
-//        mainTimerLayer.strokeEnd = 0
-//        pauseTimerLayer.strokeEnd = 0
-//        timerLabel.text = "0"
-//        startButton.isEnabled = true
-//    }
 }
