@@ -10,6 +10,8 @@
 		231E97A02C79EFB600888961 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231E979F2C79EFB600888961 /* AppDelegate.swift */; };
 		231E97A92C79EFB700888961 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231E97A82C79EFB700888961 /* Assets.xcassets */; };
 		231E97AC2C79EFB700888961 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231E97AA2C79EFB700888961 /* LaunchScreen.storyboard */; };
+		231E97B42C79F25400888961 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231E97B32C79F25400888961 /* ViewController.swift */; };
+		231E97B72C79F9C200888961 /* Stevia in Frameworks */ = {isa = PBXBuildFile; productRef = 231E97B62C79F9C200888961 /* Stevia */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,7 @@
 		231E97A82C79EFB700888961 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		231E97AB2C79EFB700888961 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		231E97AD2C79EFB700888961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		231E97B32C79F25400888961 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231E97B72C79F9C200888961 /* Stevia in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				231E979F2C79EFB600888961 /* AppDelegate.swift */,
+				231E97B32C79F25400888961 /* ViewController.swift */,
 				231E97A82C79EFB700888961 /* Assets.xcassets */,
 				231E97AA2C79EFB700888961 /* LaunchScreen.storyboard */,
 				231E97AD2C79EFB700888961 /* Info.plist */,
@@ -74,6 +79,9 @@
 			dependencies = (
 			);
 			name = HiitTimer;
+			packageProductDependencies = (
+				231E97B62C79F9C200888961 /* Stevia */,
+			);
 			productName = HiitTimer;
 			productReference = 231E979C2C79EFB600888961 /* HiitTimer.app */;
 			productType = "com.apple.product-type.application";
@@ -102,6 +110,9 @@
 				Base,
 			);
 			mainGroup = 231E97932C79EFB600888961;
+			packageReferences = (
+				231E97B52C79F9C200888961 /* XCRemoteSwiftPackageReference "Stevia" */,
+			);
 			productRefGroup = 231E979D2C79EFB600888961 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -128,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				231E97B42C79F25400888961 /* ViewController.swift in Sources */,
 				231E97A02C79EFB600888961 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +357,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		231E97B52C79F9C200888961 /* XCRemoteSwiftPackageReference "Stevia" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/freshOS/Stevia";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		231E97B62C79F9C200888961 /* Stevia */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 231E97B52C79F9C200888961 /* XCRemoteSwiftPackageReference "Stevia" */;
+			productName = Stevia;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 231E97942C79EFB600888961 /* Project object */;
 }
